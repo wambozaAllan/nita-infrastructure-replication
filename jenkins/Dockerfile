@@ -11,4 +11,6 @@ RUN add-apt-repository \
 RUN apt-get update && apt-get install -y docker-ce-cli
 USER jenkins
 RUN jenkins-plugin-cli --plugins blueocean:1.24.3
-RUN apt-get update && apt-get install -y git
+USER root
+RUN apt-get update
+RUN apt-get install -y git
