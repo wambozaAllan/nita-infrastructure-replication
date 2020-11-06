@@ -10,6 +10,5 @@ RUN add-apt-repository \
        $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 RUN jenkins-plugin-cli --plugins blueocean:1.24.3
-USER root
 RUN apt-get update
 RUN apt-get install -y git
