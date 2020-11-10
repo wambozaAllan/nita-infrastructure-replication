@@ -1,6 +1,20 @@
 version: "3.8"
 
 services:
+  micro-integrator:
+    image: wso2/wso2mi:1.2.0-SNAPSHOT-centos7
+    container_name: micro-integrator
+    restart: always
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '8290:8290'
+      - '8253:8253'
+      - '5005:5005'
+    expose:
+      # Opens port 3306 on the container
+      - '8290'
+      - '8253'
+      - '5005'
   db:
     image: mysql:8.0.22
     container_name: appsDB
@@ -25,7 +39,7 @@ services:
 
     networks:
         - data
-    
+
   app:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -34,7 +48,7 @@ services:
       - '8082:80'
     environment:
       PMA_HOST: db
-    networks: 
+    networks:
       - data
 
   jenkins:
