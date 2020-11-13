@@ -1,6 +1,22 @@
 version: "3.8"
 
 services:
+  activemq:
+    container_name: activemq
+    build:
+      context: ./activemq
+    deploy:
+      labels:
+        jenkins.description: "Creating Activemq"
+    ports:
+      - '61616:61616'
+      - '8161:8161'
+    volumes:
+      - /home/user01/activemq/conf:/mnt/conf
+      - /home/user01/activemq/data:/mnt/data
+    networks:
+     - activemq
+
   micro-integrator:
     image: wso2/wso2mi:1.2.0-SNAPSHOT-centos7
     container_name: micro-integrator
@@ -52,6 +68,7 @@ services:
       - data
 
   jenkins:
+    container_name: phpmyadmin
     build:
       context: ./jenkins
     deploy:
