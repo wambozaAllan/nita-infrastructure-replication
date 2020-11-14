@@ -68,7 +68,7 @@ services:
       - data
 
   jenkins:
-    container_name: phpmyadmin
+    container_name: jenkins
     build:
       context: ./jenkins
     deploy:
